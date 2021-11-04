@@ -19,6 +19,8 @@ function textBoxEnterListener(event) {
     if (event.code === "Enter" && event.currentTarget.value !== "") {
         createTask(event.currentTarget.value);
         event.currentTarget.value = "";
+        let addButton = document.getElementById("add-button");
+        addButton.classList.add("hidden");
     }
 }
 
@@ -43,9 +45,7 @@ function setTaskStatus(taskId, status) {
 
 function completeAll() {
     for (let taskId of Object.keys(taskElementMapping)) {
-        if (TaskStorage.getTask(taskId).completed == true) {
-            deleteTask(taskId, taskElementMapping[taskId]);
-        }
+        setTaskStatus(taskId, true);
     }
 }
 
@@ -55,6 +55,7 @@ function clearCompleted() {
             deleteTask(taskId, taskElementMapping[taskId]);
         }
     }
+    updateTaskCount();
 }
 
 function createTask(description) {
@@ -65,6 +66,7 @@ function createTask(description) {
     let taskElement = createTaskElement(taskObj, taskId);
     taskElementMapping[taskId] = taskElement;
     taskList.appendChild(taskElement);
+    updateTaskCount();
 }
 
 function deleteTask(id, taskElement) {
@@ -72,11 +74,15 @@ function deleteTask(id, taskElement) {
     taskList.removeChild(taskElement);
     TaskStorage.deleteTask(id);
     delete taskElementMapping[id];
+    updateTaskCount();
 }
 
 function updateTaskCount(count) {
     let taskCountElem = document.getElementById("task-count");
-    taskCountElem.textContent = `${taskElementMapping} tasks left`;
+    let taskCount = Object.keys(taskElementMapping).length;
+    let countString = (taskCount > 0) ? taskCount : "No";
+    let taskWordForm = (taskCount > 1 || taskCount === 0) ? "tasks" : "task";
+    taskCountElem.textContent = `${countString} ${taskWordForm} left`;
 }
 
 // Function that creates the DOM representation for a task and returns the top-level element
@@ -126,4 +132,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add an event listener to the add task button
     let addButton = document.getElementById("add-button");
     addButton.addEventListener("click", addButtonListener);
+    updateTaskCount();
 });

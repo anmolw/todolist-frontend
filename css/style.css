@@ -69,6 +69,16 @@
     margin-right: 8px;
 }
 
+#bottom-controls {
+    font-size: 0.8rem;
+    color: #bab8be;
+    padding: 5px 13px;
+}
+
+#task-count {
+    color: #000000;
+}
+
 #task-list {
     font-size: 1.2rem;
     padding-inline-start: 0;
@@ -89,6 +99,14 @@
 
 #task-list > li > input[type="checkbox"] {
     margin-right: 10px;
+}
+
+#task-list > li > .delete-button {
+    visibility: hidden;
+}
+
+#task-list > li:hover > .delete-button {
+    visibility: visible;
 }
 
 .completed {
