@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <script src="js/taskstorage.js"></script>
+    <script src="js/tasklist.js"></script>
+</head>
+
+<body>
+    <!-- Main content container -->
+    <div id="container">
+        <!-- Container for the text box and associated icons -->
+        <div id="input-container">
+            <i class="fa-solid fa-list-check" id="tasks-icon"></i>
+            <input type="text" id="task-input" placeholder="Type your todo list">
+            <i class="hidden fa-solid fa-plus" id="add-button"></i>
+        </div>
+        <div id="upper-controls"><i class="fa-solid fa-check-double"></i><span id="complete-all"
+                class="clickable">Complete
+                all tasks</span>
+            <span id="clear-completed" class="align-right clickable">Clear completed</span>
+        </div>
+        <!-- List of tasks. Will be dynamically populated -->
+        <ul id="task-list">
+            <!-- Reference markup for a task -->
+            <!-- <li><input type="checkbox" name=""><span class="task-content">Task 1</span><i class="align-right clickable fa-regular fa-circle-xmark"></i></li> -->
+        </ul>
+        <div><span id="task-count"></span></div>
+    </div>
+</body>
+
+</html>
