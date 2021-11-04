@@ -39,7 +39,14 @@ function checkBoxListener(event, id, listEntry) {
 
 function setTaskStatus(taskId, status) {
     let taskContent = taskElementMapping[taskId].querySelector(".task-content");
-    taskContent.classList.toggle("completed");
+    let checkBox = taskElementMapping[taskId].querySelector("input[type='checkbox']");
+    if (status === true) {
+        taskContent.classList.add("completed");
+    }
+    else if (taskContent.classList.contains("completed")) {
+        taskContent.classList.remove("completed");
+    }
+    checkBox.checked = status;
     TaskStorage.updateTaskStatus(taskId, status);
 }
 
