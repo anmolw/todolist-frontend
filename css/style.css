@@ -36,6 +36,7 @@
     flex-shrink: 1;
 }
 
+/** Remove the outline from the task input box when it is focused **/
 #task-input:focus-visible {
     outline: none;
 }
@@ -52,9 +53,6 @@
     cursor: pointer;
 }
 
-.hidden {
-    display: none !important;
-}
 
 #upper-controls {
     display: flex;
@@ -91,6 +89,10 @@
     padding: 10px 5px;
 }
 
+#task-list:empty {
+    border-bottom: none;
+}
+
 #task-list > li {
     display: flex;
     margin-left: 8px;
@@ -111,6 +113,11 @@
 
 .completed {
     text-decoration: line-through;
+}
+
+/** Utility classes **/
+.hidden {
+    display: none !important;
 }
 
 .clickable {

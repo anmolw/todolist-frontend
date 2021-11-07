@@ -34,10 +34,13 @@ function addButtonListener(event) {
 }
 
 function checkBoxListener(event, id, listEntry) {
+    // Listener for task checkbox click events. Sets the task's completion status
+    // according to the state of the checkbox
     setTaskStatus(id, event.currentTarget.checked);
 }
 
 function setTaskStatus(taskId, status) {
+    // Update the status of a task
     let taskContent = taskElementMapping[taskId].querySelector(".task-content");
     let checkBox = taskElementMapping[taskId].querySelector("input[type='checkbox']");
     if (status === true) {
@@ -50,12 +53,14 @@ function setTaskStatus(taskId, status) {
     TaskStorage.updateTaskStatus(taskId, status);
 }
 
+// Mark all tasks as completed
 function completeAll() {
     for (let taskId of Object.keys(taskElementMapping)) {
         setTaskStatus(taskId, true);
     }
 }
 
+// Clear all completed tasks
 function clearCompleted() {
     for (let taskId of Object.keys(taskElementMapping)) {
         if (TaskStorage.getTask(taskId).completed === true) {
@@ -77,14 +82,17 @@ function createTask(description) {
 }
 
 function deleteTask(id, taskElement) {
+    // Locate the DOM element representing the given task and delete it
     let taskList = document.getElementById("task-list");
     taskList.removeChild(taskElement);
+    // Also delete its local storage entry
     TaskStorage.deleteTask(id);
     delete taskElementMapping[id];
     updateTaskCount();
 }
 
 function updateTaskCount(count) {
+    // Update the count element with the current task count
     let taskCountElem = document.getElementById("task-count");
     let taskCount = Object.keys(taskElementMapping).length;
     let countString = (taskCount > 0) ? taskCount : "No";
@@ -135,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let textInput = document.getElementById("task-input");
     // Attach event listeners to the task input text box
     textInput.addEventListener('input', textChanged);
-    textInput.addEventListener('keydown', textBoxEnterListener);
+    textInput.addEventListener('keyup', textBoxEnterListener);
     // Add an event listener to the add task button
     let addButton = document.getElementById("add-button");
     addButton.addEventListener("click", addButtonListener);
