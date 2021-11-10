@@ -127,6 +127,7 @@
 }
 
 #task-list > li:hover > .delete-button {
+    margin-top: 1px;
     visibility: visible;
 }
 
