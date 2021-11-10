@@ -101,8 +101,20 @@
 #task-list > li {
     display: flex;
     margin-left: 8px;
-    margin-bottom: 10px;
+    opacity: 0;
+    height: 0;
+    /* transform: scaleY(0); */
     align-items: flex-start;
+    /* height: 0; */
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+#task-list > li.show {
+    /* overflow: visible; */
+    opacity: 1;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 #task-list > li > input[type="checkbox"] {
@@ -111,6 +123,7 @@
 
 #task-list > li > .delete-button {
     visibility: hidden;
+    padding: 2px;
 }
 
 #task-list > li:hover > .delete-button {
