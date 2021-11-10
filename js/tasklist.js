@@ -83,12 +83,14 @@ function createTask(description) {
     let taskElement = createTaskElement(taskObj, taskId);
     taskElementMapping[taskId] = taskElement;
     taskList.appendChild(taskElement);
+    setTimeout(() => taskElement.classList.add("show"), 0);
     updateTaskCount();
 }
 
 function deleteTask(id, taskElement) {
     // Locate the DOM element representing the given task and delete it
-    taskList.removeChild(taskElement);
+    setTimeout(() => taskList.removeChild(taskElement), 650);
+    taskElement.classList.remove("show");
     // Also delete its local storage entry
     TaskStorage.deleteTask(id);
     delete taskElementMapping[id];
@@ -142,6 +144,7 @@ function init() {
         let taskElement = createTaskElement(tasksObj[taskId], taskId);
         taskElementMapping[taskId] = taskElement;
         taskList.appendChild(taskElement);
+        taskElement.classList.add("show");
     }
     let textInput = document.getElementById("task-input");
     // Attach event listeners to the task input text box
