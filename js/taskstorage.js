@@ -5,6 +5,7 @@ const TaskStorage = {
         if (localStorage.getItem("tasks")) {
             return JSON.parse(localStorage.getItem("tasks"));
         }
+        // Return an empty object if the "tasks" key does not exist or is empty
         return {};
     },
     // Save a given task object to the "tasks" key after converting it to a JSON string

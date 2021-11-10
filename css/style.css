@@ -34,6 +34,7 @@
     font-size: 1.2rem;
     flex-grow: 1;
     flex-shrink: 1;
+    width: 100%;
 }
 
 /** Remove the outline from the task input box when it is focused **/
