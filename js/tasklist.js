@@ -88,7 +88,6 @@ function createTask(description) {
 
 function deleteTask(id, taskElement) {
     // Locate the DOM element representing the given task and delete it
-    let taskList = document.getElementById("task-list");
     taskList.removeChild(taskElement);
     // Also delete its local storage entry
     TaskStorage.deleteTask(id);
